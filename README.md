@@ -34,6 +34,7 @@ If you are working with vanilla WoW ADT files, convert them to the Classic 1.14 
 
 👉 **https://github.com/AcoStar7819/adt-to-shadowlands**
 
+Open your vanilla .adt files in Noggit (red) first and then save.
 After conversion, place the resulting `.adt` files alongside your other assets and run FileIdMapper to generate the matching `custom_files.txt`.
 
 ---
