@@ -51,12 +51,23 @@ Then create a file named `settings.json`, copy paste the below into it:
   "useAdvancedLightConfig": false
 }
 ```
-Change inputDir, outputDir and mapName to match your own location and what map you are trying to convert. 
+Change **`inputDir`**, **`outputDir`**, and **`mapName`** to match your own paths and the map you want to convert.
 
-Open the adt you want to change Noggit (red) then just click "save changed tiles". Place the saved .adt files from noggit into MapUpconverter input folder.
-Then run MapUpconverter, go into the output folder and copy the world folder into the same folder as FileIdMapper binary and run FileIdMapper to generate the matching `custom_files.txt`.
+### 1. Edit the ADT in Noggit
+Open the ADT you want to modify in **Noggit (red)**, then click **“Save changed tiles”**.
 
-See below how to setup FileIdMapper.
+### 2. Prepare files for MapUpconverter
+Place the saved `.adt` files from Noggit into the **MapUpconverter input folder**.
+
+### 3. Run MapUpconverter
+Run MapUpconverter, then open the **output** folder.  
+Copy the generated **world** folder into the same directory as the **FileIdMapper** binary.
+
+### 4. Generate `custom_files.txt`
+Run **FileIdMapper** to generate the matching `custom_files.txt`.
+
+### 5. FileIdMapper setup
+See below for how to set up **FileIdMapper**.
 
 ---
 
