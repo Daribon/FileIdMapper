@@ -1,7 +1,8 @@
 # FileIdMapper
 
-A fast tool for World of Warcraft Classic 1.14 modding. 
-Scans your mod folder and generates a custom_files.txt that maps every matched file to its numeric File ID from listfile.csv. 
+A fast, lightweight tool for **World of Warcraft Classic 1.14** modding.
+
+Scans your mod folder and generates a `custom_files.txt` that maps every matched file to its numeric **File ID** from `listfile.csv`.
 
 ---
 
@@ -9,36 +10,36 @@ Scans your mod folder and generates a custom_files.txt that maps every matched f
 
 1. Reads `listfile.csv` (format: `fileId;filePath`) into a high-performance hash table.
 2. Recursively scans the working directory for files.
-3. Matches each discovered file against the listfile by relative path.
+3. Matches each file against the listfile using its relative path.
 4. Outputs `custom_files.txt` sorted by File ID:
-   ```
-   783975;world/maps/kalimdor/kalimdor_28_43.adt
-   783976;world/maps/kalimdor/kalimdor_28_43_obj0.adt
-   783977;world/maps/kalimdor/kalimdor_28_43_obj1.adt
-   ...
-   ```
+
+```txt
+783975;world/maps/kalimdor/kalimdor_28_43.adt
+783976;world/maps/kalimdor/kalimdor_28_43_obj0.adt
+783977;world/maps/kalimdor/kalimdor_28_43_obj1.adt
+...
+```
 
 ---
 
 ## Prerequisites
 
 ### 1. Obtain a listfile
-Download the latest community listfile from the WoWDev project:
+Download the latest community listfile from the WoWDev project:  
+👉 [https://github.com/wowdev/wow-listfile](https://github.com/wowdev/wow-listfile)
 
-👉 **https://github.com/wowdev/wow-listfile**
+> **Important:** Rename the downloaded file to **`listfile.csv`** and place it in your mod folder before running FileIdMapper.
 
-> ⚠️ **Important:** Rename the downloaded file to **`listfile.csv`** and place it in the same folder as your custom files before running FileIdMapper.
+### 2. (Optional) Convert Vanilla ADTs to Classic 1.14
+If you're working with vanilla ADT files, convert them first using **MapUpconverter**:
 
-### 2. (Optional) Convert vanilla ADTs to Classic 1.14
-If you are working with vanilla WoW ADT files, convert them to the Classic 1.14 format first:
+- Download or compile: [ModernWoWTools/MapUpconverter](https://github.com/ModernWoWTools/MapUpconverter)
+- Create an `input` folder and a `settings.json` file in the program directory:
 
-👉 **https://github.com/ModernWoWTools/MapUpconverter**
-Download or compile it then inside the directory of the program, create a folder named `input`.
-Then create a file named `settings.json`, copy paste the below into it:
-```bash
+```json
 {
-  "inputDir": "/home/username/Desktop/porteritup/input/",
-  "outputDir": "/home/username/Desktop/porteritup/output/",
+  "inputDir": "/path/to/input/",
+  "outputDir": "/path/to/output/",
   "mapName": "azeroth",
   "generateWDTWDL": false,
   "rootWDTFileDataID": 0,
@@ -51,36 +52,23 @@ Then create a file named `settings.json`, copy paste the below into it:
   "useAdvancedLightConfig": false
 }
 ```
-Change **`inputDir`**, **`outputDir`**, and **`mapName`** to match your own paths and the map you want to convert.
 
-### 1. Edit the ADT in Noggit
-Open the ADTs you want to convert in **Noggit (red)**, then click **“Save changed tiles”**.
-
-### 2. Prepare files for MapUpconverter
-Place the saved `.adt` files from Noggit into the **MapUpconverter input folder**.
-
-### 3. Run MapUpconverter
-Run MapUpconverter, then open the **output** folder.  
-Copy the generated **world** folder into the same directory as the **FileIdMapper** binary.
-
-### 4. Generate `custom_files.txt`
-Run **FileIdMapper** to generate the matching `custom_files.txt`.
-
-### 5. FileIdMapper setup
-See below for how to set up **FileIdMapper**.
+- Edit ADTs in **Noggit (Red)** → Click **"Save changed tiles"**.
+- Place the saved `.adt` files into the MapUpconverter `input` folder.
+- Run MapUpconverter and copy the generated `world` folder into your mod directory.
 
 ---
 
-## Build
+## Build (from source)
 
-Requires the .NET 8 SDK or later.
+Requires **.NET 8 SDK** or later.
 
-### Windows
+**Windows:**
 ```bash
 dotnet publish -c Release -r win-x64 --self-contained
 ```
 
-### Linux
+**Linux:**
 ```bash
 dotnet publish -c Release -r linux-x64 --self-contained
 ```
@@ -89,12 +77,9 @@ dotnet publish -c Release -r linux-x64 --self-contained
 
 ## How to Run
 
-### Step 1 — Prepare your working folder
-Create a folder containing:
-- `listfile.csv` (renamed)
-- Your custom/modified game files in their correct folder structure
+### Step 1: Prepare your working folder
+Create a folder with this structure:
 
-Example layout:
 ```
 MyMods/
 ├── listfile.csv
@@ -104,39 +89,28 @@ MyMods/
 │           └── kalimdor_28_43.adt
 ├── sound/
 │   └── music/
-│       └── citymusic/
-│           └── darnassus/
-│               └── darnassus intro.mp3
-└── interface/
-    └── cinematics/
-        └── logo_1024.avi
+├── interface/
+└── ...
 ```
 
-### Step 2 — Run FileIdMapper
+### Step 2: Run FileIdMapper
 
-**Option A: Drop the executable into the folder and double-click**
+**Option A:** Drop and run (easiest)  
+Place the executable (`FileIdMapper.exe` on Windows or `FileIdMapper` on Linux) inside your mod folder and double-click it.
 
-Simply place `FileIdMapper.exe` (Windows) or `FileIdMapper` (Linux) inside `MyMods/` and run it. It will scan the current directory and output `custom_files.txt` right next to your files.
-
-**Option B: Run from command line**
-
+**Option B:** Command line
 ```bash
-# Windows — scan current folder
-FileIdMapper.exe
+# Scan current directory
+./FileIdMapper          # Linux
+FileIdMapper.exe        # Windows
 
-# Windows — scan a specific folder
-FileIdMapper.exe "C:\Users\You\MyMods"
-
-# Linux — scan current folder
-./FileIdMapper
-
-# Linux — scan a specific folder
+# Scan specific folder
 ./FileIdMapper "/home/you/MyMods"
+FileIdMapper.exe "C:\Mods\MyMods"
 ```
 
-### Step 3 — Check the output
-
-If everything worked, you will see console output like:
+### Step 3: Verify output
+You should see output similar to:
 
 ```
 Detected ~1,042,111 CSV lines. Sizing dictionary to 1,146,322 buckets.
@@ -145,47 +119,39 @@ Matched 42 files in 23.1 ms
 Wrote custom_files.txt in 12.4 ms
 ```
 
-And `custom_files.txt` will be created in the scanned folder:
+A file named `custom_files.txt` will be created in the folder.
 
-```
-MyMods/
-├── listfile.csv
-├── custom_files.txt      ← generated
-├── world/
-├── sound/
-└── interface/
-```
+---
 
 ## Installing Your Mods
 
-After `custom_files.txt` is generated, follow these two steps to install everything into your World of Warcraft client.
+1. **Place `custom_files.txt`** in the mappings folder:
+   ```
+   World of Warcraft/
+   └── mappings/
+       └── custom_files.txt
+   ```
 
-### 1. Place `custom_files.txt` in the mappings folder
+2. **Copy your custom files** into the files folder, preserving the folder structure:
+   ```
+   World of Warcraft/
+   └── files/
+       └── world/
+       └── sound/
+       └── interface/
+   ```
 
-```
-\World of Warcraft\
-    └── mappings\
-        └── custom_files.txt
-```
+---
 
-### 2. Place your custom files (mods) in the files folder
+## Running the Mods in Arctium
 
-Copy all your custom assets into the `files` directory, maintaining the correct folder structure.
+1. Compile the old version of Arctium Launcher that supports custom files:  
+   [Arctium/WoW-Launcher (specific commit)](https://github.com/Arctium/WoW-Launcher/tree/3deaa3f50b95ae918ba49ca2a4d9a895247e67f7)
 
-```
-\World of Warcraft\
-    └── files\
-        └── world/
-            └── maps/
-                └── kalimdor/
-                    └── kalimdor_28_43.
-```
-
-## Running the mods in arctium
-Once everything above is complete, compile old version of arctium launcher that supported custom files:
-https://github.com/Arctium/WoW-Launcher/tree/3deaa3f50b95ae918ba49ca2a4d9a895247e67f7
-
-Once compiled, run arctium with ```--version ClassicEra``` and your mods should display in game.
+2. Run Arctium with the following argument:
+   ```bash
+   --version ClassicEra
+   ```
 
 ---
 
