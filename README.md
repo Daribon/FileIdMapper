@@ -53,7 +53,9 @@ If you're working with vanilla ADT files, convert them first using **MapUpconver
 }
 ```
 
-- Edit ADTs in **Noggit (Red)** → Click **"Save changed tiles"**.
+- Open the ADTs in **Noggit (Red)** by placing your old custom .mpq file into your WotLK data folder.
+- Note: It doesn’t matter if the .mpq is a straight vanilla MPQ, Noggit can still read the ADTs from it.
+- In noggit, select the location on the map where your custom tiles exist → Then click **"Save changed tiles"**.
 - Place the saved `.adt` files into the MapUpconverter `input` folder.
 - Run MapUpconverter and copy the generated `world` folder into your mod directory.
 
