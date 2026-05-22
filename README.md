@@ -54,7 +54,7 @@ Then create a file named `settings.json`, copy paste the below into it:
 Change **`inputDir`**, **`outputDir`**, and **`mapName`** to match your own paths and the map you want to convert.
 
 ### 1. Edit the ADT in Noggit
-Open the ADT you want to modify in **Noggit (red)**, then click **“Save changed tiles”**.
+Open the ADTs you want to convert in **Noggit (red)**, then click **“Save changed tiles”**.
 
 ### 2. Prepare files for MapUpconverter
 Place the saved `.adt` files from Noggit into the **MapUpconverter input folder**.
