@@ -52,7 +52,9 @@ Then create a file named `settings.json`, copy paste the below into it:
 }
 ```
 Change inputDir, outputDir and mapName to match your own location and what map you are trying to convert. 
-Then run MapUpconverter, place the output `.adt` files into the same folder as FileIdMapper binary and run FileIdMapper to generate the matching `custom_files.txt`.
+
+Open the adt you want to change Noggit (red) then just click "save changed tiles". Place the saved .adt files from noggit into MapUpconverter input folder.
+Then run MapUpconverter, go into the output folder and copy the world folder into the same folder as FileIdMapper binary and run FileIdMapper to generate the matching `custom_files.txt`.
 
 See below how to setup FileIdMapper.
 
