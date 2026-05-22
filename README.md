@@ -35,6 +35,7 @@ If you are working with vanilla WoW ADT files, convert them to the Classic 1.14 
 👉 **https://github.com/ModernWoWTools/MapUpconverter**
 Download or compile it then inside the directory of the program, create a folder named `input`.
 Then create a file named `settings.json`, copy paste the below into it:
+```bash
 {
   "inputDir": "/home/username/Desktop/porteritup/input/",
   "outputDir": "/home/username/Desktop/porteritup/output/",
@@ -53,9 +54,10 @@ Then create a file named `settings.json`, copy paste the below into it:
   "targetVersion": 927,
   "useAdvancedLightConfig": false
 }
-
-Change inputDir, outputDir and mapName to match your own location and what map you are trying to convert.
+```
+Change inputDir, outputDir and mapName to match your own location and what map you are trying to convert. 
 Then run MapUpconverter, place the output `.adt` files into the same folder as FileIdMapper binary and run FileIdMapper to generate the matching `custom_files.txt`.
+
 See below how to setup FileIdMapper.
 
 ---
